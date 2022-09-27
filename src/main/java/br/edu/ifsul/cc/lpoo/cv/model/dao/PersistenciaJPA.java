@@ -1,6 +1,7 @@
     
 package br.edu.ifsul.cc.lpoo.cv.model.dao;
 
+import br.edu.ifsul.cc.lpoo.cv.model.Fornecedor;
 import br.edu.ifsul.cc.lpoo.cv.model.Produto;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -59,9 +60,16 @@ public class PersistenciaJPA implements InterfacePersistencia {
         entity.getTransaction().commit(); //comita a transacao (comando sql)                
     }
 
-    @Override
+     @Override
     public List<Produto> listProdutos() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+        return entity.createNamedQuery("Produto.orderbyid").getResultList();
+    }
+
+    @Override
+    public List<Fornecedor> listFornecedores() throws Exception {
+
+        return entity.createNamedQuery("Fornecedor.orderbynome").getResultList();
     }
     
 }

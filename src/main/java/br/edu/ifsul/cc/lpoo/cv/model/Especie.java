@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author telmo
+ * @author 20211PF.CC0001
  */
 
 @Entity

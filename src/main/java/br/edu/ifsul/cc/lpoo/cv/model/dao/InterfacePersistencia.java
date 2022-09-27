@@ -1,12 +1,13 @@
 
 package br.edu.ifsul.cc.lpoo.cv.model.dao;
 
+import br.edu.ifsul.cc.lpoo.cv.model.Fornecedor;
 import br.edu.ifsul.cc.lpoo.cv.model.Produto;
 import java.util.List;
 
 /**
  *
- * @author Prof. Telmo Jr
+ * @author 20211PF.CC0001
  */
 
 public interface InterfacePersistencia {
@@ -18,5 +19,5 @@ public interface InterfacePersistencia {
     public void remover(Object o) throws Exception;
     
     public List<Produto> listProdutos() throws Exception;
-    
+    public List<Fornecedor> listFornecedores() throws Exception;
 }

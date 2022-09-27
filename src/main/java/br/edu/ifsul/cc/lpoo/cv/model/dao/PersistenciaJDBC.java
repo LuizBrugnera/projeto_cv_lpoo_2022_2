@@ -144,9 +144,9 @@ public class PersistenciaJDBC implements InterfacePersistencia {
              p.setId(rs.getInt("id"));
              p.setNome(rs.getString("nome"));
              p.setQuantidade(rs.getFloat("quantidade"));
-             if(rs.getString("tipo") == TipoProduto.CONSULTA.name()){
+             if(rs.getString("tipo").equals(TipoProduto.CONSULTA.name())){
                 p.setTipo(TipoProduto.CONSULTA);
-             }else if(rs.getString("tipo") == TipoProduto.ATENDIMENTO_AMBULATORIAL.name()){
+             }else if(rs.getString("tipo").equals(TipoProduto.ATENDIMENTO_AMBULATORIAL.name())){
                 p.setTipo(TipoProduto.ATENDIMENTO_AMBULATORIAL);
              }
              p.setValor(rs.getFloat("valor"));
@@ -162,6 +162,32 @@ public class PersistenciaJDBC implements InterfacePersistencia {
          
          return lista;
         
+    }
+
+      @Override
+    public List<Fornecedor> listFornecedores() throws Exception {
+
+        List<Fornecedor> lista;
+
+         PreparedStatement ps = this.con.prepareStatement(" select p.cpf, p.nome "
+                                                        + " from tb_pessoa p, tb_fornecedor f where p.cpf=f.cpf order by p.cpf asc");
+
+         ResultSet rs = ps.executeQuery();
+
+         lista = new ArrayList();
+
+         while(rs.next()){
+
+             Fornecedor f = new Fornecedor();
+             f.setCpf(rs.getString("cpf"));
+             f.setNome(rs.getString("nome"));
+
+
+             lista.add(f);
+
+         }
+
+         return lista;
     }
     
 }
